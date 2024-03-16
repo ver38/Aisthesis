@@ -30,20 +30,25 @@ struct Home: View {
     
     // fetch dell audio
     @State var audios : [URL] = []
+    @State var player: AVAudioPlayer?
+    @State var selectedAudio: URL?
     
-   // () -> PrimitiveButtonStyleConfiguration.Label in
     var body: some View {
         NavigationView{
             
             VStack {
-                
-                List(self.audios, id: \.self) {i in
-                    
-                    Text(i.relativeString)
-                    
-                    
-                    
-                }
+                List(audios, id: \.self) { audio in
+                                    Button(action: {
+                                        self.playAudio(audio)
+                                    }) {
+                                        Text(audio.lastPathComponent)
+                                    }
+                                }
+//
+//                List(self.audios, id: \.self) {i in
+//                    
+//                    Text(i.relativeString)
+//                }
                 
                 Button(action: {
                 
@@ -166,4 +171,15 @@ struct Home: View {
         
         
     }
+    
+    func playAudio(_ audio: URL) {
+        do {
+            player = try AVAudioPlayer(contentsOf: audio)
+            player?.play()
+            selectedAudio = audio
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
 }
