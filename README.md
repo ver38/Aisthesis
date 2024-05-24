@@ -1,6 +1,7 @@
 
 # AISTHESIS
 Aisthesis is a basic audio recording app with a clean infercace that records the input audio and reproduces it in the ear speaker to preserve the user's privacy.
+The user can record, play and delete the audios directly from the list of audios that appear on the main view.
 Developed for learning purposes.
 
 
